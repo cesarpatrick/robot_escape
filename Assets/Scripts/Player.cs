@@ -13,10 +13,12 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private bool isLookRight = true;
     public Animator animator;
+    public GameObject nextLvDoor;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        nextLvDoor.SetActive(false);
     }
 
     void Turn()
@@ -95,6 +97,11 @@ public class Player : MonoBehaviour
             animator.SetBool("isIdle", false);
             animator.SetBool("isRunning", false);
             animator.SetBool("isDead", true);
+        }
+
+        if (collision.gameObject.tag == "Key")
+        {
+            nextLvDoor.SetActive(true);
         }
     }
     
